@@ -22,7 +22,7 @@ comfyui:
 
 # Unreal Engine Configuration
 unreal:
-  project_path: "C:/Unreal/MK_Returns/MK_Returns.uproject"
+  project_path: "/mnt/c/Unreal/MK_Returns/MK_Returns.uproject"
   python_enabled: true
   version: "5.7"
 
@@ -56,10 +56,10 @@ security:
 
 # Unity Project Integration
 unity_project:
-  root: "C:/dev/Compare/MK1_Project"
-  scripts: "C:/dev/Compare/MK1_Project/Assets/Scripts"
-  editor: "C:/dev/Compare/MK1_Project/Assets/Editor"
-  assets_source: "C:/dev/Compare/Final Assets"
+  root: "/mnt/c/dev/Compare/MK1_Project"
+  scripts: "/mnt/c/dev/Compare/MK1_Project/Assets/Scripts"
+  editor: "/mnt/c/dev/Compare/MK1_Project/Assets/Editor"
+  assets_source: "/mnt/c/dev/Compare/Final Assets"
 
 # Build Profiles
 build_profiles:
@@ -101,7 +101,7 @@ assets:
 # - USE ONLY for understanding concepts, architectures, and approaches
 # ============================================================================
 knowledge_base:
-  path: "C:/dev/Compare/Final Assets/docs"
+  path: "/mnt/c/dev/Compare/Final Assets/docs"
   usage: "REFERENCE_ONLY"
   warning: |
     This documentation is from a DIFFERENT project (Unreal Engine port).
