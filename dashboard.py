@@ -59,7 +59,7 @@ def check_comfyui():
 
 def check_unity_project():
     """Check Unity project files."""
-    proj_path = Path("C:/dev/Compare/MK1_Project")
+    proj_path = Path("/mnt/c/dev/Compare/MK1_Project")
     scripts_path = proj_path / "Assets/Scripts"
     
     if not proj_path.exists():
@@ -74,7 +74,7 @@ def check_unity_project():
 
 def check_task_ledger():
     """Check recent crew tasks."""
-    ledger = Path("C:/AI/AI_ROBOTS/artifacts/task_ledger.jsonl")
+    ledger = Path("/mnt/c/AI/AI_ROBOTS/artifacts/task_ledger.jsonl")
     if not ledger.exists():
         return {"status": "empty", "tasks": 0, "recent": []}
     
@@ -87,7 +87,7 @@ def check_task_ledger():
 
 def check_batch_log():
     """Check batch runner status."""
-    log = Path("C:/AI/AI_ROBOTS/artifacts/batch_log.jsonl")
+    log = Path("/mnt/c/AI/AI_ROBOTS/artifacts/batch_log.jsonl")
     if not log.exists():
         return {"status": "no_runs", "completed": 0, "recent": []}
     
@@ -103,7 +103,7 @@ def check_batch_log():
 
 def check_assets():
     """Check Final Assets folder."""
-    assets = Path("C:/dev/Compare/Final Assets/Characters")
+    assets = Path("/mnt/c/dev/Compare/Final Assets/Characters")
     if not assets.exists():
         return {"status": "missing", "characters": []}
     
