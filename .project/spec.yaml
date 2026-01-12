@@ -9,7 +9,7 @@ meta:
 
 layout:
   - path: /
-    type: project
+    type: code
     storage: git
 
 environment:
@@ -33,8 +33,8 @@ environment:
       - name: jupyterlab
         type: jupyterlab
         class: webapp
-        start: [ jupyter-lab --allow-root --port 8888 --ip 0.0.0.0 --no-browser --NotebookApp.base_url=\$PROXY_PREFIX --NotebookApp.default_url=/lab --NotebookApp.allow_origin='*' ]
-        health: [ jupyter, --version ]
+        start: [ "jupyter-lab", "--allow-root", "--port", "8888", "--ip", "0.0.0.0", "--no-browser", "--NotebookApp.base_url=", "--NotebookApp.default_url=/lab", "--NotebookApp.allow_origin='*'" ]
+        health: [ "jupyter", "--version" ]
         stop: []
         icon_url: ""
         webapp_options:
@@ -42,7 +42,7 @@ environment:
           port: "8888"
           proxy:
             trim_prefix: false
-          url_command: jupyter-lab list | head -n 2 | tail -n 1 | sed "s@.*\(http.*\)\s.*@\1@"
+          url_command: "jupyter-lab list | head -n 2 | tail -n 1 | sed \"s@.*\(http.*\)\s.*@\1@\""
     programming_languages:
       - python3
 
@@ -55,9 +55,9 @@ execution:
     - name: dashboard
       type: custom
       class: process
-      start: [ bash, -c, "cd /project && python dashboard.py" ]
-      health: [ pgrep, -f, dashboard.py ]
-      stop: [ pkill, -f, dashboard.py ]
+      start: [ "bash", "-c", "cd /project && python dashboard.py" ]
+      health: [ "pgrep", "-f", "dashboard.py" ]
+      stop: [ "pkill", "-f", "dashboard.py" ]
       icon_url: ""
       webapp_options:
         autolaunch: false
@@ -66,9 +66,9 @@ execution:
     - name: ollama
       type: custom
       class: process
-      start: [ bash, -c, "ollama serve" ]
-      health: [ pgrep, -f, ollama ]
-      stop: [ pkill, -f, ollama ]
+      start: [ "bash", "-c", "ollama serve" ]
+      health: [ "pgrep", "-f", "ollama" ]
+      stop: [ "pkill", "-f", "ollama" ]
 
   mounts:
     - type: project
