@@ -1,0 +1,77 @@
+specVersion: v2
+meta:
+  name: mk1-unity-agents
+  image: project-mk1-unity-agents
+  description: MK1 Unity Character Generation with CrewAI and Ollama
+  labels: []
+  createdOn: "2026-01-12T00:00:00Z"
+  defaultBranch: main
+
+layout:
+  - path: /
+    type: project
+    storage: git
+
+environment:
+  base:
+    registry: nvcr.io
+    image: nvidiaworkbench/python-basic:1.0.8
+    build_timestamp: "20241030175318"
+    name: Python Basic
+    supported_architectures:
+      - amd64
+    cuda_version: "12.6"
+    description: A Python based environment with JupyterLab
+    entrypoint_script: ""
+    labels:
+      - com.nvidia.workbench.name=Python Basic
+      - com.nvidia.workbench.description=A Python based environment with JupyterLab
+      - com.nvidia.workbench.os=linux
+      - com.nvidia.workbench.os-distro=ubuntu
+      - com.nvidia.workbench.os-distro-release=22.04
+    apps:
+      - name: jupyterlab
+        type: jupyterlab
+        class: webapp
+        start: [ jupyter-lab --allow-root --port 8888 --ip 0.0.0.0 --no-browser --NotebookApp.base_url=\$PROXY_PREFIX --NotebookApp.default_url=/lab --NotebookApp.allow_origin='*' ]
+        health: [ jupyter, --version ]
+        stop: []
+        icon_url: ""
+        webapp_options:
+          autolaunch: true
+          port: "8888"
+          proxy:
+            trim_prefix: false
+          url_command: jupyter-lab list | head -n 2 | tail -n 1 | sed "s@.*\(http.*\)\s.*@\1@"
+    programming_languages:
+      - python3
+
+  secrets:
+    - variable: GITHUB_TOKEN
+      description: GitHub Personal Access Token for repo access
+
+execution:
+  apps:
+    - name: dashboard
+      type: custom
+      class: process
+      start: [ bash, -c, "cd /project && python dashboard.py" ]
+      health: [ pgrep, -f, dashboard.py ]
+      stop: [ pkill, -f, dashboard.py ]
+      icon_url: ""
+      webapp_options:
+        autolaunch: false
+        port: "8050"
+
+    - name: ollama
+      type: custom
+      class: process
+      start: [ bash, -c, "ollama serve" ]
+      health: [ pgrep, -f, ollama ]
+      stop: [ pkill, -f, ollama ]
+
+  mounts:
+    - type: project
+      target: /project/
+      description: Project directory
+      options: rw

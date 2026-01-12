@@ -1,0 +1,27 @@
+# Test Asset Specification
+# ========================
+# This is a sample spec to test the Asset Crew workflow.
+
+asset_id: test_sprite_v1
+type: sprite
+size: [512, 512]
+format: png
+alpha: true
+style_refs:
+  - arcade_pixel_art
+  - fighting_game_character
+
+workflow: workflows/sprite_generator.json
+
+overrides:
+  # KSampler node - set seed for reproducibility
+  "3.inputs.seed": 42
+  # Positive prompt
+  "6.inputs.text": "pixel art fighting game character, arcade style, clean edges"
+  # Negative prompt
+  "7.inputs.text": "blurry, low quality, watermark"
+
+acceptance:
+  - "dimensions == 512x512"
+  - "alpha == true"
+  - "format == PNG"

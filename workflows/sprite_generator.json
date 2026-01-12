@@ -1,0 +1,27 @@
+# Placeholder workflow JSON
+# Replace this with your actual ComfyUI workflow export
+{
+    "3": {
+        "class_type": "KSampler",
+        "inputs": {
+            "seed": 0,
+            "steps": 20,
+            "cfg": 7,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1
+        }
+    },
+    "6": {
+        "class_type": "CLIPTextEncode",
+        "inputs": {
+            "text": "placeholder positive prompt"
+        }
+    },
+    "7": {
+        "class_type": "CLIPTextEncode",
+        "inputs": {
+            "text": "placeholder negative prompt"
+        }
+    }
+}

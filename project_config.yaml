@@ -1,0 +1,114 @@
+# AI Robot Agent System Configuration
+# =====================================
+
+# LLM Serving Endpoints
+llm:
+  # Using Ollama (active and running)
+  nim:
+    base_url: "http://localhost:11434"
+    model: "ollama/deepseek-r1:32b"
+    api_key: "sk-local"
+  
+  # Ollama (same, for reference)
+  ollama:
+    base_url: "http://localhost:11434"
+    model: "ollama/deepseek-r1:32b"
+
+# ComfyUI Configuration (Desktop runs on port 8000)
+comfyui:
+  base_url: "http://127.0.0.1:8000"
+  timeout_sec: 120
+  poll_interval_sec: 2
+
+# Unreal Engine Configuration
+unreal:
+  project_path: "C:/Unreal/MK_Returns/MK_Returns.uproject"
+  python_enabled: true
+  version: "5.7"
+
+# Security Boundaries
+security:
+  allowed_extensions:
+    - .c
+    - .cpp
+    - .h
+    - .hpp
+    - .inl
+    - .md
+    - .yaml
+    - .json
+    - .txt
+    - .py
+  
+  allowed_directories:
+    - src
+    - include
+    - docs
+    - artifacts
+    - workflows
+    - assets
+    - crews
+    - tools
+    # Unity project paths (relative to UNITY_PROJECT_ROOT)
+    - Assets
+    - Assets/Scripts
+    - Assets/Editor
+
+# Unity Project Integration
+unity_project:
+  root: "C:/dev/Compare/MK1_Project"
+  scripts: "C:/dev/Compare/MK1_Project/Assets/Scripts"
+  editor: "C:/dev/Compare/MK1_Project/Assets/Editor"
+  assets_source: "C:/dev/Compare/Final Assets"
+
+# Build Profiles
+build_profiles:
+  configure:
+    command: ["cmake", "-S", ".", "-B", "build"]
+    timeout_sec: 60
+  build:
+    command: ["cmake", "--build", "build", "--config", "Release"]
+    timeout_sec: 300
+  test:
+    command: ["ctest", "--test-dir", "build", "--output-on-failure"]
+    timeout_sec: 120
+  format:
+    command: ["clang-format", "-i"]
+    targets: ["src/*.cpp", "include/*.h"]
+    timeout_sec: 60
+
+# Artifact Paths
+artifacts:
+  task_ledger: "artifacts/task_ledger.jsonl"
+  asset_index: "artifacts/asset_index.jsonl"
+  build_logs: "artifacts/builds/"
+
+# Asset Paths
+assets:
+  raw: "assets/raw/"
+  ue_ready: "assets/ue_ready/"
+  workflows: "workflows/"
+  specs: "workflows/specs/"
+
+# ============================================================================
+# KNOWLEDGE BASE - REFERENCE ONLY
+# ============================================================================
+# WARNING TO ALL AGENTS:
+# The documentation at this path is for REFERENCE AND INSPIRATION ONLY.
+# - All file paths mentioned are from a DIFFERENT project
+# - All code references are NOT accurate for MK1_Project
+# - DO NOT use paths, filenames, or code snippets directly
+# - USE ONLY for understanding concepts, architectures, and approaches
+# ============================================================================
+knowledge_base:
+  path: "C:/dev/Compare/Final Assets/docs"
+  usage: "REFERENCE_ONLY"
+  warning: |
+    This documentation is from a DIFFERENT project (Unreal Engine port).
+    Paths, filenames, and code are NOT valid for the current Unity MK1_Project.
+    Use ONLY as a knowledge source for:
+    - MK game mechanics and frame data
+    - Sprite/animation naming conventions
+    - Arcade ROM analysis and extraction techniques
+    - General architecture patterns
+    DO NOT copy paths or code directly - they will not work.
