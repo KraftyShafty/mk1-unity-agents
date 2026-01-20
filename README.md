@@ -1,6 +1,6 @@
 # MK1 Unity Agent Orchestration
 
-AI-powered game development for Mortal Kombat Returns Unity rebuild.
+AI-powered game development for Mortal Kombat Unity rebuild.
 
 ## Quick Start
 
